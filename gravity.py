@@ -10,7 +10,7 @@ def make_F(masses):
         nonlocal masses
         rs = r(state)
         dists = ((rs ** 2).sum(dim=2).sqrt() + torch.eye(rs.shape[0])).unsqueeze(dim=2)
-        rd = rs / dists
+        rd = rs / dists ** 3
         accs = rd.permute([2,0,1]) @ masses
         accs = -accs.permute([1,0])
 
